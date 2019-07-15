@@ -9,7 +9,6 @@ $ pip install requests-iap
 ## Usage
 
 ```python
-import os
 import requests
 from requests_iap import IAPAuth
 
@@ -18,8 +17,7 @@ with open("google-serviceaccount-creds.json") as f:
     service_account_secret_dict = json.load(f)
 
 # https://console.cloud.google.com/apis/credentials (pick client ID of the application you are connecting to)
-# It is string in format of "1337-very-long-client-id.apps.googleusercontent.com"
-client_id = os.getenv("IAP_APP-TO-WHICH-IM-CONNECTING-TO_CLIENT_ID")
+client_id = "1337-very-long-client-id.apps.googleusercontent.com"
 
 resp = requests.get(
     "https://service.behind.iap.example.com",
