@@ -17,7 +17,6 @@ setup(
     tests_require=tests_require,
     include_package_data=True,
     classifiers=[
-        "Private :: Do Not Upload",
         "Development Status :: 4 - Beta",
         "Environment :: Console",
         "Operating System :: OS Independent",
