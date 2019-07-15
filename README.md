@@ -1,6 +1,10 @@
 # requests-iap
-Auth class for [requests](https://github.com/kennethreitz/requests) used to authenticate HTTP requests to OIDC-authenticated resources (Identity Aware Proxy) using a service account. It transparently caches the OIDC token returned by google in-memory of the program 
+Auth class for [requests](https://github.com/kennethreitz/requests) used to authenticate HTTP requests to OIDC-authenticated resources ([Cloud Identity-Aware Proxy](https://cloud.google.com/iap/)) using a Google service account. In addition, it transparently caches the OIDC token returned by google in-memory of the program.
 
+## Installation
+```bash
+$ pip install requests-iap
+```
 
 ## Usage
 
