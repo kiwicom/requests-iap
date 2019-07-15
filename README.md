@@ -58,10 +58,8 @@ Run `pip install tox-battery` to install a plugin which fixes this silliness.
 
 ## Thanks 
 
-- @bayotop for https://gist.github.com/bayotop/7df8a36aab7308ef723afc70ff3cd2a2
-- Google for creating IAP :-) https://cloud.google.com/iap/docs/authentication-howto#authenticating_from_a_desktop_app
-
-## Contributing
+- [@bayotop](https://github.com/bayotop/) for [this snippet](https://gist.github.com/bayotop/7df8a36aab7308ef723afc70ff3cd2a2)
+- Google for creating [IAP](https://cloud.google.com/iap) :-)
 
 Create a merge request and assign it to jan.masarik for review.
 Ping jan.masarik in the discussion channel linked above.
