@@ -8,7 +8,7 @@ with open("test-requirements.in") as f:
 
 setup(
     name="requests-iap",
-    version="0.2.0",
+    version="0.2.1b1",
     url="https://github.com/kiwicom/requests-iap",
     author="jan.masarik",
     author_email="jan.masarik@kiwi.com",
