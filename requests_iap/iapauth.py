@@ -5,6 +5,8 @@ import logging
 import jwt
 import requests
 
+from urllib3.util.retry import Retry
+from requests.adapters import HTTPAdapter
 from cryptography.hazmat.primitives.serialization import load_pem_private_key
 from cryptography.hazmat.backends import default_backend
 
@@ -104,9 +106,10 @@ class IAPAuth(requests.auth.AuthBase):
         return False
 
     def get_google_open_id_connect_token(self):
-        r = requests.post(
+        session = IAPAuth.retry_session()
+        r = session.post(
             self.oauth_token_uri,
-            timeout=4,
+            timeout=3,
             data={
                 "assertion": self.get_jwt_assertion(),
                 "grant_type": self.jwt_bearer_token_grant_type,
@@ -115,3 +118,19 @@ class IAPAuth(requests.auth.AuthBase):
         r.raise_for_status()
         log.debug("Successfully requested id_token from Google API.")
         return r.json()["id_token"]
+
+    @staticmethod
+    def retry_session():
+        session = requests.Session()
+        retries = 3
+        retry = Retry(
+            total=retries,
+            read=retries,
+            connect=retries,
+            backoff_factor=0.3,
+            method_whitelist=False,
+        )
+        adapter = HTTPAdapter(max_retries=retry)
+        session.mount('http://', adapter)
+        session.mount('https://', adapter)
+        return session
