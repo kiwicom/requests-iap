@@ -38,7 +38,7 @@ class IAPAuth(requests.auth.AuthBase):
         )
 
     def __call__(self, r):
-        if not self.credentials.token or self.credentials.expired:
+        if self.credentials.token is None or self.credentials.expired:
             self.credentials.refresh(Request())
 
         r.headers["Authorization"] = "Bearer {}".format(self.credentials.token)
