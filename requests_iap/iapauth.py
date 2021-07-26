@@ -12,16 +12,16 @@ log = logging.getLogger("requests_iap")
 class IAPAuth(requests.auth.AuthBase):
     """Custom requests Auth class used to authenticate HTTP requests to OIDC-authenticated resources using a service account.
 
-    The major use case is to use this flow to make requests to resources behind an Identity-Aware Proxy (https://cloud.google.com/iap).
-    This works by generating a JWT with an additional `target_audience` claim set to the OAuth2 client id which
-    is signed using the GCP service account credentials.
+        The major use case is to use this flow to make requests to resources behind an Identity-Aware Proxy (https://cloud.google.com/iap).
+        This works by generating a JWT with an additional `target_audience` claim set to the OAuth2 client id which
+        is signed using the GCP service account credentials.
 
-    This JWT is then exchanged for a Google-signed OIDC token for the client id specified in the JWT claims.
-    Authenticated requests are made by setting the token in the `Authorization: Bearer` header.
+        This JWT is then exchanged for a Google-signed OIDC token for the client id specified in the JWT claims.
+        Authenticated requests are made by setting the token in the `Authorization: Bearer` header.
 
-    This token has roughly a 1-hour expiration and is renewed transparently by this authentication class.
-    The renewal interval is 30 minutes (to keep requests working with the old token for roughly 30 more minutes in case Google API is down).
-    This can be configured via the `jwt_soft_expiration` parameter.
+        This token has roughly a 1-hour expiration and is renewed transparently by this authentication class.
+        The renewal interval is 30 minutes (to keep requests working with the old token for roughly 30 more minutes in case Google API is down).
+        This can be configured via the `jwt_soft_expiration` parameter.
     """
 
     client_id: str
