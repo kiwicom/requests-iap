@@ -4,6 +4,7 @@ import requests
 from google.oauth2.service_account import IDTokenCredentials
 from google.auth.transport.requests import Request
 
+# https://cloud.google.com/iap/docs/authentication-howto
 
 log = logging.getLogger("requests_iap")
 
@@ -21,8 +22,6 @@ class IAPAuth(requests.auth.AuthBase):
     This token has roughly a 1-hour expiration and is renewed transparently by this authentication class.
     The renewal interval is 30 minutes (to keep requests working with the old token for roughly 30 more minutes in case Google API is down).
     This can be configured via the `jwt_soft_expiration` parameter.
-
-    See more at: https://cloud.google.com/iap/docs/authentication-howto
     """
 
     client_id: str
